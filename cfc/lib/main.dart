@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
 //     tags: ["AA", "EDU", "GE"],
 //     officer: [{"name": "Sybella Franco", "role": "CEO"}, {"name": "Calixta Boothman", "role": "CFO"}, {"name": "Desiree Dresdner", "role": "CTO"}]
 // ),),
-      home: MainScreen(),
+      home: LandingScreen(),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../screens/home_screen/home_screen.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
 import 'socal.dart';
@@ -38,24 +39,33 @@ class Header extends StatelessWidget {
                             _controller.openOrCloseDrawer();
                           },
                         ),
-                      Row(
-                        children: [
-                          Text(
-                            "Combl",
-                            style: TextStyle(
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              "Combl",
+                              style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.w800,
-                                fontFamily: "Santana",),
-                          ),
-                          Text(
-                            ".",
-                            style: TextStyle(
-                              color: Colors.green[700],
-                              fontSize: 40,
-                              fontWeight: FontWeight.w900,
+                                fontFamily: "Santana",
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              ".",
+                              style: TextStyle(
+                                color: Colors.green[700],
+                                fontSize: 40,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Spacer(),
                       if (Responsive.isDesktop(context)) WebMenu(),
@@ -86,7 +96,6 @@ class Header extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                   if (Responsive.isDesktop(context))
                     SizedBox(height: kDefaultPadding),
                 ],

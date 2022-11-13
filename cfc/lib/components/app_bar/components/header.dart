@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../screens/home_screen/home_screen.dart';
+
 class Header extends StatelessWidget {
   const Header({
     Key? key,
@@ -16,18 +18,32 @@ class Header extends StatelessWidget {
           width: 60,
         ),
         const SizedBox(width: 10.0),
-        Row(
-          children: [
-            Text(
-              "Combl",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800, fontFamily: "Santana"),
-            ),
-            Text(
-              ".",
-              
-              style: TextStyle(color: Colors.green[700],fontSize: 40, fontWeight: FontWeight.w900,),
-            ),
-          ],
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+          },
+          child: Row(
+            children: [
+              Text(
+                "Combl",
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: "Santana"),
+              ),
+              Text(
+                ".",
+                style: TextStyle(
+                  color: Colors.green[700],
+                  fontSize: 40,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
+          ),
         )
       ],
     );

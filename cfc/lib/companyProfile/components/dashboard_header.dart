@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../HomeScreen/constants.dart';
 import '../../HomeScreen/responsive.dart';
+import '../../screens/home_screen/home_screen.dart';
 import '../style/colors.dart';
 import '../style/style.dart';
 
@@ -22,24 +23,32 @@ class DashboardHeader extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    "Combl",
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: "Santana"),
-                  ),
-                  Text(
-                    ".",
-                    style: TextStyle(
-                      color: Colors.green[700],
-                      fontSize: 40,
-                      fontWeight: FontWeight.w900,
+              InkWell(
+                onTap: (() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+                }),
+                child: Row(
+                  children: [
+                    Text(
+                      "Combl",
+                      style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: "Santana"),
                     ),
-                  ),
-                ],
+                    Text(
+                      ".",
+                      style: TextStyle(
+                        color: Colors.green[700],
+                        fontSize: 40,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 30,

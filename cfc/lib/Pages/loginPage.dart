@@ -162,24 +162,32 @@ class _BodyState extends State<Body> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    "Combl",
-                    style: TextStyle(
-                        fontSize: 80,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: "Santana"),
-                  ),
-                  Text(
-                    ".",
-                    style: TextStyle(
-                      color: Colors.green[700],
-                      fontSize: 80,
-                      fontWeight: FontWeight.w900,
+              InkWell(
+                onTap: (() {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+                }),
+                child: Row(
+                  children: [
+                    Text(
+                      "Combl",
+                      style: TextStyle(
+                          fontSize: 80,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: "Santana"),
                     ),
-                  ),
-                ],
+                    Text(
+                      ".",
+                      style: TextStyle(
+                        color: Colors.green[700],
+                        fontSize: 80,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 30,
