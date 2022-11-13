@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cfc/Pages/Register.dart';
 import 'package:flutter/material.dart';
 
 class HeroText extends StatelessWidget {
@@ -27,28 +30,35 @@ class BuyNowButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: 150.0,
-      height: 50.0,
-      decoration: BoxDecoration(
-        color: Colors.black87,
-        borderRadius: BorderRadius.circular(40.0),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Register now",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-              // fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: (() {
+        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()));
+      }),
+      child: Container(
+        alignment: Alignment.center,
+        width: 150.0,
+        height: 50.0,
+        decoration: BoxDecoration(
+          color: Colors.black87,
+          borderRadius: BorderRadius.circular(40.0),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Register now",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+                // fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Icon(Icons.navigate_next_rounded,
-              color: Colors.deepOrangeAccent, size: 30.0),
-        ],
+            Icon(Icons.navigate_next_rounded,
+                color: Colors.deepOrangeAccent, size: 30.0),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,4 @@
-from flask import Flask, request,jsonify
+from flask import Flask, request, jsonify
 from pathlib import Path
 import requests
 import json
@@ -26,8 +26,17 @@ def login():
     return jsonify({"auth": False})
 
 
+@app.route('/register', methods=['GET'])
+def register():
+    email = request.args["email"]
+    password = request.args["password"]
+    name = request.args["name"]
 
-
+    if email in users.keys():
+        return jsonify({"auth": False})
+    users[email] = {"name": name, "email": email, "password": password}
+    pickle.dump(users, open('users.p', 'wb'))
+    return jsonify({"auth": True})
 
 
 if __name__ == "__main__":

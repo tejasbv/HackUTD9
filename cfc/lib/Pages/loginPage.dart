@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
+import 'package:cfc/HomeScreen/screens/main/main_screen.dart';
 import 'package:cfc/Pages/Register.dart';
 import 'package:cfc/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
   @override
@@ -35,10 +39,14 @@ class Menu extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _menuItem(title: 'Home', press: (){Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LandingScreen()),
-                      );}),
+              _menuItem(
+                  title: 'Home',
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+                  }),
               _menuItem(title: 'About us'),
               _menuItem(title: 'Contact us'),
               _menuItem(title: 'Help'),
@@ -55,7 +63,8 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _menuItem({String title = 'Title Menu', isActive = false,  press = null}) {
+  Widget _menuItem(
+      {String title = 'Title Menu', isActive = false, press = null}) {
     return Padding(
       padding: const EdgeInsets.only(right: 75),
       child: MouseRegion(
@@ -70,8 +79,9 @@ class Menu extends StatelessWidget {
                 '$title',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color:
-                      isActive ? Color.fromARGB(230, 210, 180, 140) : Colors.grey,
+                  color: isActive
+                      ? Color.fromARGB(230, 210, 180, 140)
+                      : Colors.grey,
                 ),
               ),
               SizedBox(
@@ -79,7 +89,8 @@ class Menu extends StatelessWidget {
               ),
               isActive
                   ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                       decoration: BoxDecoration(
                         color: Color.fromARGB(230, 210, 180, 140),
                         borderRadius: BorderRadius.circular(30),
@@ -126,7 +137,14 @@ class Menu extends StatelessWidget {
   }
 }
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  var email, password, errorMessage="";
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -192,7 +210,7 @@ class Body extends StatelessWidget {
                     child: Text(
                       "Register here!",
                       style: TextStyle(
-                          color: Color.fromARGB(230,210, 180, 140),
+                          color: Color.fromARGB(230, 210, 180, 140),
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -201,7 +219,6 @@ class Body extends StatelessWidget {
               Image.asset(
                 'images/illustration-2.png',
                 width: 400,
-                
               ),
             ],
           ),
@@ -222,17 +239,21 @@ class Body extends StatelessWidget {
               vertical: MediaQuery.of(context).size.height / 6),
           child: Container(
             width: 320,
-            child: _formLogin(),
+            child: _formLogin(context: context),
           ),
         )
       ],
     );
   }
 
-  Widget _formLogin() {
+  Widget _formLogin({required context  }) {
     return Column(
       children: [
+        Text(errorMessage==""?"":errorMessage, style: TextStyle(color: Colors.red),),
         TextField(
+          onChanged: ((value) {
+            email = value;
+          }),
           decoration: InputDecoration(
             hintText: 'Enter email',
             filled: true,
@@ -251,6 +272,9 @@ class Body extends StatelessWidget {
         ),
         SizedBox(height: 30),
         TextField(
+          onChanged: (value) {
+            password = value;
+          },
           decoration: InputDecoration(
             hintText: 'Password',
             counterText: 'Forgot password?',
@@ -277,16 +301,37 @@ class Body extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
-            
           ),
           child: ElevatedButton(
             child: Container(
                 width: double.infinity,
                 height: 50,
                 child: Center(child: Text("Sign In"))),
-            onPressed: () => print("it's pressed"),
+            onPressed: () async {
+              
+              final response = await http.get(Uri.parse("http://127.0.0.1:5000/login?email=" +
+                      email +
+                      "&password=" +
+                      password));
+                  
+                print(response.body);
+                final decode =
+                    json.decode(response.body) as Map<String, dynamic>;
+
+                if (decode["auth"]) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+                } else {
+                  setState(() {
+                    errorMessage = "incorrect username or password";
+                  });
+                }
+              
+            },
             style: ElevatedButton.styleFrom(
-              primary: Color.fromARGB(230,210, 180, 140),
+              primary: Color.fromARGB(230, 210, 180, 140),
               onPrimary: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),

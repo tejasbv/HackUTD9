@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
+import 'package:cfc/HomeScreen/screens/main/main_screen.dart';
 import 'package:cfc/Pages/loginPage.dart';
 import 'package:cfc/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -35,10 +39,14 @@ class Menu extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _menuItem(title: 'Home', press: (){Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LandingScreen()),
-                      );}),
+              _menuItem(
+                  title: 'Home',
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LandingScreen()),
+                    );
+                  }),
               _menuItem(title: 'About us'),
               _menuItem(title: 'Contact us'),
               _menuItem(title: 'Help'),
@@ -55,7 +63,8 @@ class Menu extends StatelessWidget {
     );
   }
 
-  Widget _menuItem({String title = 'Title Menu', isActive = false,  press = null}) {
+  Widget _menuItem(
+      {String title = 'Title Menu', isActive = false, press = null}) {
     return Padding(
       padding: const EdgeInsets.only(right: 75),
       child: MouseRegion(
@@ -70,8 +79,9 @@ class Menu extends StatelessWidget {
                 '$title',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color:
-                      isActive ? Color.fromARGB(230, 210, 180, 140) : Colors.grey,
+                  color: isActive
+                      ? Color.fromARGB(230, 210, 180, 140)
+                      : Colors.grey,
                 ),
               ),
               SizedBox(
@@ -79,7 +89,8 @@ class Menu extends StatelessWidget {
               ),
               isActive
                   ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                       decoration: BoxDecoration(
                         color: Color.fromARGB(230, 210, 180, 140),
                         borderRadius: BorderRadius.circular(30),
@@ -126,7 +137,13 @@ class Menu extends StatelessWidget {
   }
 }
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  var email, password, name, errorMessage = "";
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -231,7 +248,14 @@ class Body extends StatelessWidget {
   Widget _formLogin() {
     return Column(
       children: [
+        Text(
+          errorMessage == "" ? "" : errorMessage,
+          style: TextStyle(color: Colors.red),
+        ),
         TextField(
+          onChanged: (value) {
+            name = value;
+          },
           decoration: InputDecoration(
             hintText: 'Name',
             filled: true,
@@ -250,6 +274,9 @@ class Body extends StatelessWidget {
         ),
         SizedBox(height: 30),
         TextField(
+          onChanged: (value) {
+            email = value;
+          },
           decoration: InputDecoration(
             hintText: 'Enter email',
             filled: true,
@@ -268,7 +295,12 @@ class Body extends StatelessWidget {
         ),
         SizedBox(height: 30),
         TextField(
+          onChanged: (value) {
+            password= value;
+          },
+          obscureText: true,
           decoration: InputDecoration(
+            
             hintText: 'Password',
             counterText: 'Forgot password?',
             suffixIcon: Icon(
@@ -300,7 +332,32 @@ class Body extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: Center(child: Text("register"))),
-            onPressed: () => print("it's pressed"),
+            onPressed: () async {
+              if (email == "" || password == "" || name == "") {
+                setState(() {
+                  errorMessage = "Please enter a valid details!";
+                });
+              }
+              final response = await http.get(Uri.parse(
+                  "http://127.0.0.1:5000/register?name=" +
+                      name +
+                      "&email=" +
+                      email +
+                      "&password=" +
+                      password));
+
+              final decode = json.decode(response.body) as Map<String, dynamic>;
+              if (decode["auth"]) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainScreen()),
+                );
+              } else {
+                setState(() {
+                  errorMessage = "email already exists";
+                });
+              }
+            },
             style: ElevatedButton.styleFrom(
               primary: Color.fromARGB(230, 210, 180, 140),
               onPrimary: Colors.white,

@@ -32,18 +32,18 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.brown,
       ),
-      home: Dashboard(company: Company(
-    name: "Pegasus School of Liberal Arts & Sciences",
-    desc: "The Pegasus School of Liberal Arts & Sciences opened its doors to students in 1997. As an open enrollment public charter school, Pegasus is part of the public school system of Texas, providing tuition free public education to its students.Serving students for 25 years, the Pegasus School of Liberal Arts & Sciences is an open-enrollment public charter school, educating its students with free tuition and public education.",
-    image: "images//pegasus.jpg",
-    diversity:[50, 25, 20, 3, 2],
-    environment: 56,
-    social: 89,
-	gonver: 74,
-    tags: ["AA", "EDU", "GE"],
-    officer: [{"name": "Sybella Franco", "role": "CEO"}, {"name": "Calixta Boothman", "role": "CFO"}, {"name": "Desiree Dresdner", "role": "CTO"}]
-),),
-      // home: MainScreen(),
+//       home: Dashboard(company: Company(
+//     name: "Pegasus School of Liberal Arts & Sciences",
+//     desc: "The Pegasus School of Liberal Arts & Sciences opened its doors to students in 1997. As an open enrollment public charter school, Pegasus is part of the public school system of Texas, providing tuition free public education to its students.Serving students for 25 years, the Pegasus School of Liberal Arts & Sciences is an open-enrollment public charter school, educating its students with free tuition and public education.",
+//     image: "images//pegasus.jpg",
+//     diversity:[50, 25, 20, 3, 2],
+//     environment: 56,
+//     social: 89,
+// 	gonver: 74,
+//     tags: ["AA", "EDU", "GE"],
+//     officer: [{"name": "Sybella Franco", "role": "CEO"}, {"name": "Calixta Boothman", "role": "CFO"}, {"name": "Desiree Dresdner", "role": "CTO"}]
+// ),),
+      home: MainScreen(),
     );
   }
 }

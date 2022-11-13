@@ -63,8 +63,8 @@ class DashboardHeader extends StatelessWidget {
                 width: size.width/3*2,
                 child: PrimaryText(
                   text: company.desc,
-                  size: 16,
-                  color: AppColors.secondary,
+                  size: 20,
+                  color: Color.fromARGB(255, 132, 130, 130),
                 ),
               ),
             ],

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -5,8 +7,10 @@ import '../../../constants.dart';
 import 'sidebar_container.dart';
 
 class Search extends StatelessWidget {
-  const Search({
+  var searchVal;
+   Search({
     Key? key,
+    required this.searchVal
   }) : super(key: key);
 
   @override
@@ -14,7 +18,9 @@ class Search extends StatelessWidget {
     return SidebarContainer(
       title: "Search",
       child: TextField(
-        onChanged: (value) {},
+        onChanged: (value) {
+          searchVal(value);
+        },
         decoration: InputDecoration(
           hintText: "Type Here ...",
           suffixIcon: Padding(
