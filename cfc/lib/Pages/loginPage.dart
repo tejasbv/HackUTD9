@@ -283,6 +283,7 @@ class _BodyState extends State<Body> {
           onChanged: (value) {
             password = value;
           },
+          obscureText: true,
           decoration: InputDecoration(
             hintText: 'Password',
             counterText: 'Forgot password?',

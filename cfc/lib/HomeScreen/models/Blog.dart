@@ -95,7 +95,7 @@ Company(
     name: "Candy Marcum Counseling",
     desc: "Candy Marcum has been counseling, training, writing, supervising, facilitating and advising people since 1981. Her passion, professionalism, enthusiasm and people skills have helped guide her in her life’s work as a healer. She counsels Individuals and serves as a Professional Supervisor for professionals wanting to gain full Licensure in Professional Counseling and Marriage and Family Counseling.",
     image: "images//candy.jpg",
-    diversity:[60, 10, 20, 10, 0],
+    diversity:[60, 10, 20, 9, 1],
     environment: 14,
     social: 87,
 	gonver: 48,
@@ -161,7 +161,7 @@ Company(
     name: "The Movement Loft",
     desc: "The Movement Loft is an airy studio space offering a blend of adult dance yoga, sound bath and wellness classes, retreats and curated wellness events in Dallas. We are currently offering dance, yoga, stretch, meditation, sound bath and conditioning classes as well as wellness retreats around Dallas. Click below to see our schedule.",
     image: "images//movement.jpg",
-    diversity:[2, 5, 1, 92, 0],
+    diversity:[2, 5, 1, 91, 1],
     environment: 63,
     social: 98,
 	gonver: 76,
@@ -176,7 +176,7 @@ Company(
     environment: 67,
     social: 99,
 	gonver: 89,
-    tags: ["LGBT", "GE", "H", "AA", "EDU"],
+    tags: ["LGBT", "GE", "H", "AA"],
     officer: [{"name": "Domitille Donohue", "role": "CEO"}, {"name": "Danijela Fierro", "role": "CFO"}]	
 ),
 Company(
