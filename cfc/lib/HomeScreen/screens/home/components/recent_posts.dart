@@ -15,13 +15,13 @@ class RecentPosts extends StatelessWidget {
       child: Column(
         children: [
           RecentPostCard(
-            image: "assets/images/recent_1.png",
+            image: "images//recent_1.png",
             title: "Our “Secret” Formula to Online Workshops",
             press: () {},
           ),
           SizedBox(height: kDefaultPadding),
           RecentPostCard(
-            image: "assets/images/recent_2.png",
+            image: "images//recent_2.png",
             title: "Digital Product Innovations from Warsaw with Love",
             press: () {},
           ),

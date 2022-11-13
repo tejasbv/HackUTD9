@@ -198,7 +198,7 @@ class _HeroImageState extends State<HeroImage> {
         // Positioned(
         //   bottom: bottom,
         //   // child: Image.asset(
-        //   //   'assets/images/ramsai.png',
+        //   //   'images//ramsai.png',
         //   //   height: imageHeight,
         //   //   width: imageWidth ?? mediaQuery.width * 0.25,
         //   // ),
