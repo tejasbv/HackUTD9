@@ -1,3 +1,5 @@
+import 'package:cfc/HomeScreen/screens/home/home_screen.dart';
+import 'package:cfc/HomeScreen/screens/main/main_screen.dart';
 import 'package:cfc/Pages/Register.dart';
 import 'package:cfc/Pages/loginPage.dart';
 import 'package:cfc/screens/home_screen/home_screen.dart';
@@ -25,9 +27,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
-      home: RegisterPage(),
+      home: MainScreen(),
+      // home: LandingScreen(),
     );
   }
 }
